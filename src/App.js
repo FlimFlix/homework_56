@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import Field from "./components/field/field";
 import Cell from "./components/field/cell/cell";
+import Button from "./components/button/button";
 
 
 const FIELD_SIZE = 6;
@@ -13,7 +14,8 @@ class App extends Component {
 
         this.state = {
             cells: this.generateCells(),
-            counter: 0
+            counter: 0,
+            endgame: false
         }
     }
 
@@ -33,18 +35,22 @@ class App extends Component {
     };
 
     openCell = (id) => {
-      let cell = {...this.state.cells[id]};
-      cell.closed = false;
+        let cell = {...this.state.cells[id]};
+        cell.closed = false;
 
-      let cells = [...this.state.cells];
-      cells[id] = cell;
+        let cells = [...this.state.cells];
+        cells[id] = cell;
 
-      let state = {...this.state};
-      state.cells = cells;
-      state.counter += 1;
+        let state = {...this.state};
+        state.cells = cells;
+        state.counter += 1;
 
-      this.setState(state);
+        if (state.cells[id].hasItem === true)
+            state.endgame = true;
+
+        this.setState(state);
     };
+
 
     render() {
         return (
@@ -55,11 +61,12 @@ class App extends Component {
                             cell={item}
                             id={index}
                             key={index}
-                            click={() => this.openCell(index)}
+                            click={(this.state.endgame) ? null : () => this.openCell(index)}
                         />
                     )}
                 </Field>
-                <p>{this.state.counter}</p>
+                <p>Ваши попытки: {this.state.counter}</p>
+                <Button/>
             </div>
         );
     }

@@ -4,7 +4,7 @@ import React from 'react';
 function Cell(props) {
     let hiddenItem = null;
     if (props.cell.hasItem) {
-        hiddenItem = <div className='hidden-item'>0</div>
+        hiddenItem = <div className='hidden-item'>O</div>
     }
 
     let cellStyle = {
