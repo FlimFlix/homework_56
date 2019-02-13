@@ -17,7 +17,7 @@ class App extends Component {
             cells: this.generateCells(),
             counter: 0,
             endgame: false
-        }
+        };
     }
 
     generateCells = () => {
@@ -62,6 +62,9 @@ class App extends Component {
         return this.state.endgame
     };
 
+    resetGame = () => {
+        this.setState({endgame: false, cells: this.generateCells(), counter: 0})
+    };
 
     render() {
         return (
@@ -77,7 +80,7 @@ class App extends Component {
                     )}
                 </Field>
                 <Counter counter={this.getCounter()} endgame={this.getStatus()}/>
-                <Button/>
+                <Button click={this.resetGame}/>
             </div>
         );
     }
