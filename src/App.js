@@ -36,19 +36,21 @@ class App extends Component {
 
     openCell = (id) => {
         let cell = {...this.state.cells[id]};
-        cell.closed = false;
 
-        let cells = [...this.state.cells];
-        cells[id] = cell;
+        if (cell.closed) {
+            cell.closed = false;
 
-        let state = {...this.state};
-        state.cells = cells;
-        state.counter += 1;
+            let cells = [...this.state.cells];
+            cells[id] = cell;
 
-        if (state.cells[id].hasItem === true)
-            state.endgame = true;
+            let state = {...this.state};
+            state.cells = cells;
+            state.counter += 1;
 
-        this.setState(state);
+            if (state.cells[id].hasItem === true) {
+                state.endgame = true;
+            }
+        this.setState(state);}
     };
 
 
@@ -65,7 +67,7 @@ class App extends Component {
                         />
                     )}
                 </Field>
-                <p>Ваши попытки: {this.state.counter}</p>
+                <p>{(this.state.endgame) ?  <span>Вы нашли элемент!</span> : <span>Ваши попытки: {this.state.counter}</span>}</p>
                 <Button/>
             </div>
         );

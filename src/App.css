@@ -1,16 +1,19 @@
 .container {
     max-width: 90%;
     margin: 0 auto;
+    text-align: center;
 }
 
-.button {
-    width: 100px;
-    box-shadow: None;
-    background: sandybrown;
-    color: bisque;
-    text-transform: uppercase;
-}
+.button button {
+    padding: 15px;
+    background: red;
+    text-shadow: none;
+    color: white;
+    font-size: medium;
+    border-radius: 10px;
 
+
+}
 .field {
     padding: 20px;
     width: 360px;
