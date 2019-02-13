@@ -3,6 +3,7 @@ import './App.css';
 import Field from "./components/field/field";
 import Cell from "./components/field/cell/cell";
 import Button from "./components/button/button";
+import Counter from "./components/counter/counter";
 
 
 const FIELD_SIZE = 6;
@@ -53,6 +54,14 @@ class App extends Component {
         this.setState(state);}
     };
 
+    getCounter = () => {
+        return this.state.counter
+    };
+
+    getStatus = () => {
+        return this.state.endgame
+    };
+
 
     render() {
         return (
@@ -67,7 +76,7 @@ class App extends Component {
                         />
                     )}
                 </Field>
-                <p>{(this.state.endgame) ?  <span>Вы нашли элемент!</span> : <span>Ваши попытки: {this.state.counter}</span>}</p>
+                <Counter counter={this.getCounter()} endgame={this.getStatus()}/>
                 <Button/>
             </div>
         );
